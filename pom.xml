@@ -9,7 +9,7 @@
 
     <groupId>org.openhab.binding</groupId>
     <artifactId>org.openhab.binding.aleoncean</artifactId>
-    <version>1.7.2-SNAPSHOT</version>
+    <version>1.7.2</version>
     <packaging>bundle</packaging>
 
     <name>openHAB aleoncean Binding</name>
@@ -57,8 +57,8 @@
         <!-- TODO: do not use 2.5.4 (https://issues.apache.org/jira/browse/FELIX-4874); wait for 2.5.5 -->
         <maven.bundle.plugin.version>2.5.3</maven.bundle.plugin.version>
 
-        <oh1.version>1.8.0-SNAPSHOT</oh1.version>
-        <aleoncean.version>1.7-SNAPSHOT</aleoncean.version>
+        <oh1.version>1.7.0</oh1.version>
+        <aleoncean.version>1.8</aleoncean.version>
 
         <!-- added for OSGi in general -->
         <dep.osgi.core.groupId>org.osgi</dep.osgi.core.groupId>
@@ -78,7 +78,7 @@
         <url>https://github.com/maggu2810/aleoncean-openhab-binding</url>
         <connection>scm:git:git@github.com:maggu2810/aleoncean-openhab-binding.git</connection>
         <developerConnection>scm:git:git@github.com:maggu2810/aleoncean-openhab-binding.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>org.openhab.binding.aleoncean-1.7.2</tag>
     </scm>
 
     <dependencies>
