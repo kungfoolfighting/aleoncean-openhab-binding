@@ -118,10 +118,8 @@ public class DeviceContainer implements DeviceParameterUpdatedListener {
             list = new LinkedList<>();
             list.add(device);
             remoteAddressToDevice.put(device.getAddressRemote(), list);
-        } else {
-            if (!list.contains(device)) {
-                list.add(device);
-            }
+        } else if (!list.contains(device)) {
+            list.add(device);
         }
     }
 
@@ -178,12 +176,12 @@ public class DeviceContainer implements DeviceParameterUpdatedListener {
             // Find a converter class for the item.
             final Class<? extends StandardConverter> converterClass;
             converterClass = ConverterFactory.getConverterClass(config.getParameter(), config.getItemType(), config.getAcceptedDataTypes(),
-                                                                config.getAcceptedCommandTypes(), config.getConvParam());
+                    config.getAcceptedCommandTypes(), config.getConvParam());
 
             // Proceed only is a converter class is found.
             if (converterClass == null) {
                 LOGGER.warn("No converter class found! item type: {}, parameter: {}, device class: {}", config.getItemType(), config.getParameter(),
-                            device.getClass());
+                        device.getClass());
                 return false;
             }
 
@@ -222,6 +220,10 @@ public class DeviceContainer implements DeviceParameterUpdatedListener {
         } catch (final IllegalDeviceParameterException ex) {
             LOGGER.warn("Get value for item by parameter failed; name: {}, info: {}, parameter: {}\n{}", itemName, itemInfo, config.getParameter(), ex);
         }
+
+        // Call the initialization handler of the device.
+        // Perhaps the device could request the current values from the 'real world'.
+        device.initialize();
 
         // Return with a success indication.
         return true;
@@ -313,11 +315,11 @@ public class DeviceContainer implements DeviceParameterUpdatedListener {
         final StandardDevice device = (StandardDevice) event.getSource();
 
         LOGGER.debug("Parameter changed: remoteId={}, parameter={}, value: {} => {}, initiation: {}",
-                     device.getAddressRemote(),
-                     event.getParameter(),
-                     event.getOldValue(),
-                     event.getNewValue(),
-                     event.getInitiation());
+                device.getAddressRemote(),
+                event.getParameter(),
+                event.getOldValue(),
+                event.getNewValue(),
+                event.getInitiation());
 
         final List<String> itemNames = getItemNamesForDevice(device);
         for (final String itemName : itemNames) {
