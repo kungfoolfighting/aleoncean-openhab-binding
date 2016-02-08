@@ -94,4 +94,26 @@ Switch EO_0083C0F4_ON {aleoncean="LOCALID=FF:F4:0A:81,REMOTEID=02:88:C0:F4,TYPE=
 Switch EO_01037079_ON {aleoncean="LOCALID=FF:F4:0A:81,REMOTEID=02:88:70:79,TYPE=RD_D2-01-08,PARAMETER=SWITCH"}
 Switch EO_01034F50_ON {aleoncean="LOCALID=FF:F4:0A:82,REMOTEID=02:88:4F:50,TYPE=RD_D2-01-08,PARAMETER=SWITCH"}
 
+// thermokon SRC-DO Lighting
+// The device supports multiple RORGs. You should use the VLD (non-4BS one) for bidirektional communication.
+Switch SCRDO_ONOFF "SCRDO switch" (ItemFile) {aleoncean="LOCALID=FF:80:00:10,REMOTEID=FF:90:00:81,TYPE=RD_D2-01-08,PARAMETER=SWITCH"}
+
+// PEHA 452 FU-EBIM JR o.T.
+// Show values the device is sending
+// The device sends the position if the position detected is active, only (see manual).
+// It seems the angle is send never.
+Number 452FUEBIMJR_RECV_ANGLE    "425FUEBIMJR recv angle [%d]"    (ItemFile) {aleoncean="REMOTEID=FF:90:01:00,TYPE=RD_A5-11-03,PARAMETER=ANGLE_DEGREE"}
+Number 452FUEBIMJR_RECV_POSITION "425FUEBIMJR recv position [%d]" (ItemFile) {aleoncean="REMOTEID=FF:90:01:00,TYPE=RD_A5-11-03,PARAMETER=POSITION_PERCENT"}
+Switch 452FUEBIMJR_SEND_UP       "425FUEBIMJR send up (p/r)"      (ItemFile) {aleoncean="LOCALID=FF:80:00:11,TYPE=LD_F6-02-01,PARAMETER=BUTTON_DIM_A,CONVPARAM=UpPressedReleased"}
+Switch 452FUEBIMJR_SEND_DO       "425FUEBIMJR send down (p/r)"    (ItemFile) {aleoncean="LOCALID=FF:80:00:11,TYPE=LD_F6-02-01,PARAMETER=BUTTON_DIM_A,CONVPARAM=DownPressedReleased"}
+
+// Eltako FUD61NPN-230V
+// Set device to AUTO + LRN
+// Use teach in = OFF -> ON -> OFF to teach in as 4BS (to get answer)
+// Ensure that the device sends BiDi (see manual)
+Switch FUD61_TEACHIN  "FUD61 teach in (4BS)"     (ItemFile) {aleoncean="LOCALID=FF:80:00:12,TYPE=LD_A5-38-08_CMD02,PARAMETER=TEACHIN"}
+Number FUD61_SEND_DIM "FUD61 send dimming [%d]"  (ItemFile) {aleoncean="LOCALID=FF:80:00:12,TYPE=LD_A5-38-08_CMD02,PARAMETER=POSITION_PERCENT"}
+Switch FUD61_SEND_SW  "FUD61 send on / off [%s]" (ItemFile) {aleoncean="LOCALID=FF:80:00:12,TYPE=LD_A5-38-08_CMD02,PARAMETER=SWITCH"}
+Number FUD61_RECV_DIM "FUD61 recv dimming [%d]"  (ItemFile) {aleoncean="REMOTEID=01:02:03:04,TYPE=RD_A5-38-08_CMD02,PARAMETER=POSITION_PERCENT"}
+Switch FUD61_RECV_SW  "FUD61 recv on / off [%s]" (ItemFile) {aleoncean="REMOTEID=01:02:03:04,TYPE=RD_A5-38-08_CMD02,PARAMETER=SWITCH"}
 ```
