@@ -57,7 +57,7 @@
     <maven.bundle.plugin.version>3.0.1</maven.bundle.plugin.version>
 
     <oh1.version>1.7.0</oh1.version>
-    <aleoncean.version>1.9-SNAPSHOT</aleoncean.version>
+    <aleoncean.version>1.9</aleoncean.version>
 
     <!-- added for OSGi in general -->
     <dep.osgi.core.groupId>org.osgi</dep.osgi.core.groupId>
